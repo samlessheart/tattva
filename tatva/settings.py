@@ -28,7 +28,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["tatvaparna.site", "www.tatvaparna.site", "13.126.92.128"]
 
 
 # Application definition
