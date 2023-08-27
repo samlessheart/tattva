@@ -33,7 +33,10 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{% url 'home'%}">Home</a>
-            <a class="nav-item nav-link" href="{% url 'home'%}">Articles</a>
+            <a class="nav-item nav-link" href="{% url 'blogs'%}">Blogs</a>
+            <a class="nav-item nav-link" href="{% url 'contactus'%}">Contact Us</a>
+            <a class="nav-item nav-link" href="{% url 'aboutus'%}">About Us</a>
+            
             
 
           </div>
@@ -45,7 +48,9 @@
       </div>
     </nav>
   </header>
-  {% block headimage %}{% endblock %}
+  {% block headimage %}
+  
+  {% endblock %}
 
 
   <main role="main" class="container">
@@ -53,7 +58,7 @@
       <div class="col-md-8">
         {% block content %}{% endblock %}
       </div>
-      <!--<div class="col-md-4">
+      <div class="col-md-4">
             <div class="content-section">
               <h3>Sponsored Products</h3>
               <p class='text-muted'>Please consider buying to support us.
@@ -65,7 +70,7 @@
                 </ul>
               </p>
             </div>
-          </div>-->
+          </div>
     </div>
   </main>
 

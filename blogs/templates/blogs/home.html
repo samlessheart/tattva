@@ -1,0 +1,41 @@
+{%extends "main/base.html"%}
+
+{%load static%}
+
+{% block headimage %}
+<div class="container "><img class="head-image" src="{%static 'main\images\socratesa_death_edited.jpg'%}" alt="No image" width=100%> </div>
+{%endblock headimage%}
+
+{%block content%}
+
+
+{%for blog in blogs%}
+<article class="media content-section">
+    <div class="media-body">
+        <h2><a class="article-title" href="{%url 'blogdetail' blog.id%}">{{ blog.name }}</a></h2>
+        <div class="article-metadata">
+            <small class="text-muted">{{ blog.created_on|date:"d N, Y" }}</small>
+        </div>
+        <p class="article-content">{{ post.small_content }}</p>
+        <a class="article-content" href="{{blog.video_link}}">{{ blog.video_link }}</a>
+
+    </div>
+</article>
+{%endfor%}
+
+{%if is_paginated%}
+    {%if page_obj.has_previous%}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">previous</a>
+    {%endif%}
+
+
+
+    {%if page_obj.has_next%}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number}}">next</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+    {%endif%}
+
+    {%endif%}
+
+    {%endblock content%}
