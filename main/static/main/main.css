@@ -3,7 +3,7 @@
 body {
     background: #fafafa;
     color: #333333;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -12,14 +12,6 @@ body {
   
   ul {
     margin: 0;
-  }
-  
-  .bg-steel {
-    background-color: #9a49a1;
-  }
-
-  .nav-item{
-    margin-left: 80px;
   }
 
   .head-image{    
