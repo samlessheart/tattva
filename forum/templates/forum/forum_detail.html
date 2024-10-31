@@ -1,0 +1,30 @@
+{%extends "main/base.html"%}
+
+{%load static%}
+
+
+{%block content%}
+
+
+<h1>Forum home page</h1>
+<div>
+    <div class="border">
+        <h2><a href="#">{{forum.title}}</a></h2>
+        <small>{{forum.created_on}}</small>
+
+    </div>
+
+    <br>
+
+    {% for reply in reply_list %}
+    <div class="border">
+        <small>{{reply.created_on}}</small>
+        <small>{{reply.created_by}}</small>
+        <div> {{reply.preface | safe}}</div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{%endblock content%}

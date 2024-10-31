@@ -1,0 +1,41 @@
+.logo {
+    color: #fa5205e5;
+    font-size: 500%;
+    font-weight: 900;
+    margin-left: 20px;
+}
+
+.logopng {    
+    width: 100px;
+    border: 1px;
+    border-color: black;
+}
+
+.advert {
+    min-width: 100px;
+    height: fit-content;
+}
+
+.email_input {
+    border: 2px;
+    border-radius: 3px;
+    border-color: blue;  
+}
+
+
+.suvichar {
+    background-color: rgba(139, 141, 141, 0.774);
+    border: 3px solid green;    
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    background-size: cover;  
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-position: center;
+    background-blend-mode: multiply;
+    font-size: large;
+}
+
+
+
+  

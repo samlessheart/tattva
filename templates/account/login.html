@@ -1,0 +1,41 @@
+{%extends "main/base.html"%}
+{% load socialaccount %}
+
+
+{%load static%}
+
+
+{%block content%}
+
+
+<div class="container text-dark mt-5 ">
+  <div class="row justify-content-md-center">
+    <div class="col-md-5 bg-grey p-3">
+      <form class="form-signin" method="post" action="{% url 'account_login'%}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+
+        <input name="login" type="email" id="id_login" class="form-control  my-2 " placeholder="Email address" required
+          autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="password" id="id_password" class="form-control  my-2" placeholder="Password"
+          required>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <a href="{% provider_login_url 'google' %}" class="btn btn btn-danger btn-lg btn-block" role="button"
+        aria-pressed="true">Sign in with Google</a> 
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{%endblock content%}

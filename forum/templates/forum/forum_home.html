@@ -1,0 +1,20 @@
+{%extends "main/base.html"%}
+
+{%load static%}
+
+{%block content%}
+
+
+<h1 class=" mx-4">Forum </h1>
+{% for forum in forum_list %}
+<div class="card mx-4">
+    <h2 class="link-dark">
+        <a href="{%url 'forum_detail' forum.id%} "
+            class="nav-item">
+            {{forum.title}}</a>
+    </h2>
+    <small>{{forum.created_on}}</small>
+
+</div>
+{% endfor %}
+{%endblock content%}
