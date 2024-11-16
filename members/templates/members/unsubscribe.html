@@ -1,0 +1,22 @@
+{%extends "main/base.html"%}
+
+{%load static%}
+
+{%block content%}
+
+
+
+
+<div class=" mx-4 col-5">
+    <h3 class="my-4">Unsubscribe </h3>
+
+    <p>Please enter your email below to unsubscribe</p>
+
+    <form action="{%url 'unsubscribe' %}" method="POST">
+        {% csrf_token %}
+        <input type="email" id="email" name="email" placeholder="Enter your email" class="my-2 form-control " required>
+        <br>
+        <button class=" btn btn-warning " type="submit">unsubscribe</button>
+    </form>
+</div>
+{%endblock content%}

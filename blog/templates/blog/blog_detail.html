@@ -1,0 +1,114 @@
+{%extends "main/base.html"%}
+
+{%load static%}
+
+{%block content%}
+
+
+<h1 class=" mx-4">Blog Home </h1>
+
+<div class="">
+
+
+    <div class="card col-10 my-4 mx-4">
+        <div class="card-body">
+            <h5 class="card-title"> {{post.title}} </h5>
+            <div class="border-bottom">
+                <small>{{post.created_on}}</small>
+            </div>
+            <br>
+            <p>{{post.content | safe}}</p>
+
+
+        </div>
+
+
+    </div>
+
+    {% if user.is_authenticated %}
+    <h4 class="mx-4 col-10 ">Submit a Comment</h4>
+    
+    <form id="commentForm" class="mx-4 col-10 ">
+        <br>
+        <textarea class="form-control " name="content" placeholder="Your comment" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% else %}
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to submit a comment.</p>
+    {% endif %}
+
+        <br>
+    <div id="commentsSection">
+        {%for comment in comments%}
+        <div class="card col-10 mx-4">
+            <div class="card-body">
+
+                <div class="border-bottom">
+                    <small>{{comment.date_posted}}</small>
+                </div>
+                <br>
+                <p>{{comment.content | safe}}</p>
+                <small class="d-flex justify-content-end">{{comment.author}}</small>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+
+
+<script>
+    const commentform = document.forms['commentForm'];
+    commentform.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const value = commentform.querySelector('textarea[name="content"]').value;
+        console.log(value);
+        let bodydata = JSON.stringify({ 'content': value, 'post_id': {{ post.id }} });
+
+    // let formData = new FormData(this);
+
+    // console.log(formData);
+    fetch("{% url 'submit_comment' %}", {
+        method: "POST",
+        body: bodydata,
+        headers: {
+            "X-Requested-With": "XMLHttpRequest",  // Marks the request as AJAX
+            "X-CSRFToken": "{{ csrf_token }}"      // Django's CSRF token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                // Append the new comment to comments section
+                const commentHTML = `
+                <div class="card col-10  mx-4">
+                    <div class="card-body">
+
+                    <div class="border-bottom">
+                    <small>${data.date_posted}</small>
+                    </div>
+                    <br>
+                    <p>${data.content}</p>
+                    </div>
+                </div>
+                `;
+                document.getElementById("commentsSection").insertAdjacentHTML("beforeend", commentHTML);
+                document.getElementById("commentForm").reset();
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
+
+
+
+
+{%endblock content%}
+
+
+

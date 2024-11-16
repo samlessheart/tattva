@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'forum',
     'task',
     'blog',
-    
+    'celery',
     
 ]
 
@@ -77,7 +77,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 
 
 
@@ -155,11 +154,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
 AUTH_USER_MODEL = "members.CustomUser"
-
-
-
 
 
 # Default primary key field type
@@ -179,15 +174,25 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-
-
-
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
+# Celery Settings
+CELERY_BROKER_URL = config('REDIS_LINK')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+# CELERY_RESULT_BACKEND = 'django-db'
+

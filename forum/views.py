@@ -11,13 +11,20 @@ def forum_home(request):
 
 
 def forum_detail(request, pk):
-    forum = Forum.objects.get(id=pk)
-    reply_list = Forum_reply.objects.filter(forum = forum)
-    context = {"forum":forum}
-    context["reply_list"] = reply_list
-    print(context["forum"])
-    return render(request, "forum/forum_detail.html", context)
+    forum = Forum.objects.get(id=pk)  
+    
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            reply= form.save(commit= False)
+            reply.created_by = request.user
+            reply.forum = forum
+            reply.save()
 
+    reply_list = Forum_reply.objects.filter(forum = forum)  
+    context = {"forum":forum, "reply_list":reply_list, 'form': ReplyForm()}
+   
+    return render(request, "forum/forum_detail.html", context)
 
 
 def add_forum(request):
@@ -26,6 +33,6 @@ def add_forum(request):
     if request.method == 'POST':
         form = ForumForm(request.POST)
         if form.is_valid():
-            form.save()   
-    
+            form.save()
+        
     return render(request, "forum/add_forum.html", context)

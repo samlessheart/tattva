@@ -3,8 +3,8 @@ from .views import *
 
 
 urlpatterns = [
-    # path('forum/', forum_home, name = "forum_home"),
+   
     
-    
+    path('test/', test, name = "test"),
     
 ]

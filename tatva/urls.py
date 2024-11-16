@@ -23,8 +23,7 @@ urlpatterns = [
     path('', include('forum.urls')),
     path('', include('blog.urls')),
     path('', include('task.urls')),
-    
+    path('', include('members.urls')),    
     # all_auth endpoints
-    path('accounts/', include('allauth.urls')),
-    
+    path('accounts/', include('allauth.urls')), 
 ]

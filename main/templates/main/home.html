@@ -8,20 +8,22 @@
 
 
 <div  style="background-image: url({%static 'main\images\phil-header.jpg'%});" class="suvichar text-light text-center">
-   <p class="" style="vertical-align: middle;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit optio
-    fugit repellendus molestiae corrupti delectus eligendi ipsum debitis dolorum!
-    Quam iusto voluptas ratione quae amet, cumque velit veniam aliquam.</p> 
-    <!-- <img class="img-fluid rounded" src="{%static 'main\images\phil-header.jpg'%}" alt="">   -->
+    <p class="" style="vertical-align: middle;">
+        {{today_thought.suvichar }}
+        
+    </p>
+  <p class="" style="vertical-align: end;"> -{{today_thought.author }}</p> 
 </div>
-<div class="row">
-    {%for loop in loop_ls%}
+<div class="row  justify-content-between px-2 ">
+    {%for blog in blogs%}
 
-    <div class="card  my-4 mx-2 col-xs-12 col-md-3 ">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+    <div class=" card my-2 col-xs-12 col-md-6 ">
+        <div class="card-body ">
+            <h5 class="card-title ">{{blog.title}}</h5>
+            <h6 class="card-subtitle ">Card subtitle</h6>
+            <p class="card-text"> {{blog.small_content | safe}}</p>
+
+
         </div>
     </div>
     {%endfor%}

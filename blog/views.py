@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.views.generic import ListView, DetailView
-from .forms import CommentForm
+from .forms import CommentForm, ArticleForm
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+import json
+
 
 
 class PostListView(ListView):
@@ -16,29 +20,42 @@ class PostListView(ListView):
 
 
 
-class PostDetailView(DetailView, FormMixin):
-    model = Article
-    form_class = CommentForm
-	
-	
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(post= self.object,  ).order_by('-date_posted')
-		
-        return context
-	
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()		
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+def blogdetail(request, pk):
 
-    def form_valid(self, form):
-        form.instance.post = self.object
-        form.save()
-        return super(PostDetailView, self).form_valid(form)
-	
-    def get_success_url(self):
-        return reverse('article-Detail', kwargs={'pk': self.object.id})
+    post = Article.objects.get(pk=pk)
+    context = {'post':post}
+    context['comments']= Comment.objects.filter(post= post ).order_by('-date_posted')
+    return render(request, 'blog/blog_detail.html', context)
+
+
+@login_required
+def submitcomment(request):    
+    data = json.load(request)
+    
+    if request.method == "POST" :
+        post = Article.objects.get(pk=data.get("post_id"))
+        content = data.get("content")
+        comment = Comment.objects.create(post=post, author=request.user, content=content)
+
+        response_data = {
+            "id": comment.id,
+            "content": comment.content,
+            "date_posted":comment.date_posted            
+        }
+        return JsonResponse(response_data)
+    
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+
+def add_blog(request):
+     form = ArticleForm()
+     context = {'form' : form}
+     if request.method == "POST" :
+          form = ArticleForm(request.POST)
+          if form.is_valid():
+               form.save()
+
+               return redirect('blog_home' )
+
+     return render(request, 'blog/add_blog.html', context)

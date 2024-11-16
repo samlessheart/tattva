@@ -17,14 +17,29 @@
     <br>
 
     {% for reply in reply_list %}
-    <div class="border">
+    <div class="border border-rounded">
         <small>{{reply.created_on}}</small>
+        
+        <div> {{reply.reply_text | safe}}</div>
         <small>{{reply.created_by}}</small>
-        <div> {{reply.preface | safe}}</div>
     </div>
 
     {% endfor %}
 
+    <form method="post" action="#" class="">
+        {% csrf_token %}
+        <div>
+            {{form.media}} 
+            {{form.as_p}} 
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Add Blog</button>
+    </form> 
+
 </div>
+
+<script>
+
+    
+</script>
 
 {%endblock content%}

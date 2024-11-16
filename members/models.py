@@ -13,3 +13,8 @@ class Subscriber(models.Model):
 
 class CustomUser(AbstractUser):
     pass
+
+
+
+
+
