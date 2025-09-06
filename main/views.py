@@ -1,16 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Daily_thought
 from datetime import datetime
 from blog.models import Article
+from .errands import get_daily_thought
 
 def home(request):
     loop_ls = [i for i in range(6)]
     context = {'loop_ls': loop_ls}
     today = datetime.today()
-    try:
-        today_thought = Daily_thought.objects.get(last_used= today)
-    except:
-        today_thought = Daily_thought.objects.all().order_by('last_used').first()
+
+    
+    today_thought = get_daily_thought()
+
+    print(today_thought)
     context['today_thought'] =  today_thought
     blogs = Article.objects.all()
     context['blogs'] = blogs
@@ -28,3 +30,8 @@ def contactus(request):
 
 def aboutus(request):
     return render(request, "main/about.html")
+
+
+def test_suvichar(request):
+    get_daily_thought()
+    return redirect('home')

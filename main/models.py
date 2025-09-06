@@ -9,4 +9,10 @@ class Daily_thought(models.Model):
     used_count = models.IntegerField(default=0)
     last_used = models.DateField(null= True , blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    
+
+
+
+
+
+
+

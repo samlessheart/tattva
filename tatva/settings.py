@@ -134,6 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+LOGIN_REDIRECT_URL='/'
 
 SITE_ID = 1
 
@@ -156,6 +157,7 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = "members.CustomUser"
 
+STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -189,10 +191,11 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 # Celery Settings
-CELERY_BROKER_URL = config('REDIS_LINK')
+CELERY_BROKER_URL =  'redis://default:WHMaxpjCaqX91KVLWPSvbjtUnt5OEvvK@redis-18476.crce179.ap-south-1-1.ec2.redns.redis-cloud.com:18476' 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 # CELERY_RESULT_BACKEND = 'django-db'
+
 

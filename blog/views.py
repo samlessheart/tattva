@@ -48,8 +48,10 @@ def submitcomment(request):
 
 
 
+@login_required
 def add_blog(request):
      form = ArticleForm()
+     
      context = {'form' : form}
      if request.method == "POST" :
           form = ArticleForm(request.POST)

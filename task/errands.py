@@ -40,3 +40,4 @@ def new_blog_update(self):
 
     send_mail(subject, message, from_email, send_to_list)
 
+

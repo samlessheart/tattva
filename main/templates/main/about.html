@@ -1,15 +1,26 @@
- {%extends "main/base.html"%}
-
+{%extends "main/base.html"%}
 {%load static%}
 
-
 {%block content%}
+<h1 class="text-center my-4">About Us</h1>
 
+<div class="container">
+    <!-- Person 1 -->
+    <div class="text-center m-4 p-4 border rounded bg-white shadow-sm">
+        <img src="{% static 'main/images/your_photo.jpg' %}" class="img-fluid rounded-circle mb-3" alt="Your Name" style="width: 180px; height: 180px; object-fit: cover;">
+        <h3>Your Name</h3>
+        <p class="text-justify">
+            I’m [Your Name], one of the co-creators of this project. From the very beginning, my goal has been to create a space that reflects a blend of technology and meaningful communication. With a background in [your field], I enjoy solving problems through logic and creativity. My strengths lie in backend development, data structuring, and system design — and I’m particularly passionate about building tools that help people express and share ideas effectively. Beyond coding, I’m also interested in philosophy, design thinking, and the way digital tools influence human behavior. I believe every project is a reflection of its creators’ values, and this one stands as a testament to collaboration, learning, and experimentation. Working on this platform has not only sharpened my technical skills but has also deepened my appreciation for teamwork and thoughtful user experience. I’m committed to continuously improving the platform and keeping it responsive to what users need. When I’m not working on code, I like exploring books, trying out new productivity tools, and hiking. This platform is more than just a project for me — it’s a growing idea, and I’m excited to see how it evolves with the community.
+        </p>
+    </div>
 
-<h1> About Us</h1>
-
-
+    <!-- Person 2 -->
+    <div class="text-center m-4 p-4 border rounded bg-white shadow-sm">
+        <img src="{% static 'main/images/colleague_photo.jpg' %}" class="img-fluid rounded-circle mb-3" alt="Colleague Name" style="width: 180px; height: 180px; object-fit: cover;">
+        <h3>Colleague Name</h3>
+        <p class="text-justify">
+            I’m [Colleague Name], and I’ve had the pleasure of building this project alongside [Your Name]. With a keen interest in front-end development and user interfaces, I’ve always been passionate about making digital experiences intuitive and engaging. My academic journey in [their field or degree] gave me a strong foundation in both technology and creative expression. I’ve focused on making sure that our platform not only functions well but feels smooth and accessible for all users. One of my key motivations in working on this project has been to make learning and expression easier for everyone who visits. I also enjoy diving into visual design, optimizing performance, and making content visually appealing. Working as part of this team has been an incredible experience — full of brainstorming, late-night debugging, and the joy of finally seeing our ideas come to life. Outside of this, I enjoy photography, sketching, and reading about the future of web development. Every aspect of this platform has been thoughtfully crafted, and I’m proud of what we’ve accomplished so far. This is just the beginning, and I’m excited about what’s next.
+        </p>
+    </div>
 </div>
-{%endblock content%} 
-
-
+{%endblock content%}
