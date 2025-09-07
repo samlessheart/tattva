@@ -191,7 +191,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 # Celery Settings
-CELERY_BROKER_URL =  'redis://default:WHMaxpjCaqX91KVLWPSvbjtUnt5OEvvK@redis-18476.crce179.ap-south-1-1.ec2.redns.redis-cloud.com:18476' 
+CELERY_BROKER_URL =  config('REDIS_LINK')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
